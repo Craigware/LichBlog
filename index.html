@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Lich Devlog</title>
+</head>
+<body>
+  <main>
+  <h1>Lich Blog</h1>
+  <p>
+  Lich is a top down action rpg with bosses that roam the open world intracting with the environment around them.
+  </p>
+  <p>For a comprehensive overview on what I am trying to achieve checkout the Game Design Document</p>
+  <h3>Development Tool</h3>
+  <ul>
+    <li>GodotMono 4.3 beta 2</li>
+    <li>Asesprite</li>
+    <li>Tilesetter</li>
+  </ul>
+  <p>Development start date: 08-01-2024</p>
+  <hr>
+  <hr>
+  <section id="Blogs">
+  <div id="08122024" class="blog">
+    <h2>Blog Update 08-12-2024 'Init'</h2>
+    <p>
+      First two weeks of development are coming to a close! A lot of work has been done, I've
+      <ul>
+        <li>Created a simple entity system</li>
+        <li>Created player movement</li>
+        <li>Created an inventory system</li>
+        <li>Created item data structures</li>
+        <li>Created a primitive combat system</li>
+        <li>Started working on AI navigation</li>
+      </ul>
+    </p>
+
+    <div class="media-grid">
+      <img src="src\08122024\GUISsHKWIAAEkRw.png" style="width: 49%;"
+      alt="A mockup on the visual style of the game, top down hand painted in pixel art."/>
+      <img src="src\08122024\Gif2.gif" style="width: 49%;"
+      alt="Demo of primitive gameplay."/>
+    </div>
+
+    <h4>Simple entity system</h4>
+    <p>
+      I have three different types of entities currently, dynamic entities, static entities, and etherial entities.
+      <br>
+      <strong>Dynamic entites</strong> encompass everything in the game that can move in a sporadic pattern. These are things like the player, bosses, and npcs.
+      <br>
+      <strong>Static entities</strong> are entities that don't tend to move. Examples of this would
+      be houses, folliage, and points of interest.
+      <br>
+      <strong>Etherial entities</strong> are entities that can be interacted with but do not
+      interact with the combat system at all. These are things like teleportation locations and
+      item pickups.
+    </p>
+
+    <h4>Player Movement</h4>
+    <p>
+      The player utilizes a finite state machine in order to control actions.
+      The state machine has 6 states, IDLE, MOVING, ROLLING, ATTACKING, CHANNELING, and STUNNED.
+      Currently the only states that are implemented are IDLE, MOVING, and ROLLING.
+      <br>
+      When the player begins to move their movement speed ramps up over time, and when they stop it 
+      decreases. I believe that movement is the defining factor in a lot of different games, and that
+      honing this part will be integral to how fun the game will be.
+      <br>
+      The player also has the option to roll, forcing them in a direction at an increased velocity.
+      Right now the player cannot influence the roll as it is being performed, I don't know if
+      this will be the case further in development.
+    </p>
+
+    <h4>Inventory</h4>
+    <p>
+      The inventory system is pretty simple, currently im using an array that contains a class that has a reference to an item and a count.
+      Later down the line when I allow the player to sort their inventories themselfs using an array here instead of a dictionary is going to
+      make things simpler.
+    </p>
+
+    <h4>Primitive Combat System</h4>
+    <p>
+      I decided to use static library class and enum for using weapons. If the player performs and attack and a weapon is currently selected
+      in their inventory, it calls Attacks.UseWeapon(weapon, caster) which figures out how the weapons hitbox should be calculated based off
+      a WEAPON_TYPE enum, if there is a hit then Attacks.UseEffect(weapon, entity) is called with the hit entity using a WEAPON_EFFECT enum
+      to decide what effect the weapon has, both use a bunch of switch cases BB.
+    </p>
+    <hr>
+    <h3>08-31-2024 Goals</h3>
+    <p>
+      My primary goal this month is getting systems created for the games core functionality.
+      <ul>
+        <li><s>Player movement and item management</s></li>
+        <li>Standard enemies that persue the player</li>
+        <li>Combat loop</li>
+        <li>A leveling system</li>
+        <li>Bosses with the capabilities of interacting with the world around them</li>
+      </ul>
+    </p>
+    <hr>
+    <hr>
+  </div>
+  </section>
+  </main>
+</body>
+</html>
